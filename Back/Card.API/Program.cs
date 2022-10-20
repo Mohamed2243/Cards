@@ -1,4 +1,4 @@
-using CardApi.Data;
+using Card.API.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,7 +9,6 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
 //Inject Dbcontext
 builder.Services.AddDbContext<CardsDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("CardsDbConnectionString")));
 builder.Services.AddCors((setup) =>
@@ -29,10 +28,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
 app.UseCors("defult");
-
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
 
 app.MapControllers();
